@@ -16,6 +16,11 @@ export const CustomerNav = () => {
           Products
         </Link>
       </li>
+      <li className="navbar__item active">
+        <Link className="navbar__link" to="/find">
+          Find Kandy
+        </Link>
+      </li>
       <li className="navbar__item navbar__logout">
         <Link
           className="navbar__link"

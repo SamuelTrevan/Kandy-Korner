@@ -27,15 +27,24 @@ export const NewProductForm = () => {
       productTypeId: userChoices.productTypeId,
       pricePerUnit: userChoices.pricePerUnit,
     };
-    return fetch("http://localhost:8088/products", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newProduct),
-    })
-      .then((response) => response.json())
-      .then(() => navigate("/products"));
+    if (
+      userChoices.name &&
+      userChoices.imageURL &&
+      userChoices.productTypeId &&
+      userChoices.pricePerUnit
+    ) {
+      return fetch("http://localhost:8088/products", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newProduct),
+      })
+        .then((response) => response.json())
+        .then(() => navigate("/products"));
+    } else {
+      alert("Fill out the entire form please!");
+    }
   };
 
   const handleInputChange = (event) => {
@@ -119,7 +128,7 @@ export const NewProductForm = () => {
         onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
         className="btn btn-primary"
       >
-        Submit Ticket
+        Add New Kandy
       </button>
     </form>
   );

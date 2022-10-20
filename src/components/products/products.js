@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const ProductsList = () => {
+export const ProductsList = ({ searchTerms }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProductds] = useState([]);
   const [toggle, setToggle] = useState(false);
@@ -9,6 +9,13 @@ export const ProductsList = () => {
 
   const currentUser = localStorage.getItem("kandy_user");
   const kandyUserObj = JSON.parse(currentUser);
+
+  useEffect(() => {
+    const searchedKandy = products.filter((product) => {
+      return product.name.toLowerCase().startsWith(searchTerms.toLowerCase());
+    });
+    setFilteredProductds(searchedKandy);
+  }, [searchTerms]);
 
   useEffect(() => {
     fetch(`http://localhost:8088/products?_expand=productType`)
@@ -46,13 +53,13 @@ export const ProductsList = () => {
           >
             {toggle ? "All Kandy" : "Top Price"}
           </button>
-          <button
+          {/* <button
             onClick={() => {
               navigate("/create");
             }}
           >
             New Kandy Form
-          </button>
+          </button> */}
         </>
       ) : (
         ""
@@ -64,7 +71,7 @@ export const ProductsList = () => {
               <div>{product.name}</div>
               <img src={product.imageURL} alt={product.name} />
               <div>${product.pricePerUnit}</div>
-              <div>{product.productType.name}</div>
+              <div>{product?.productType?.name}</div>
             </div>
           );
         })}
