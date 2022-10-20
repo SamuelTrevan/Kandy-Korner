@@ -18,7 +18,22 @@ export const EmployeeNav = () => {
       </li>
       <li className="navbar__item active">
         <Link className="navbar__link" to="/create">
-          New Kandy
+          New Kandy Form
+        </Link>
+      </li>
+      <li className="navbar__item active">
+        <Link className="navbar__link" to="/newEmployee">
+          New Employee Form
+        </Link>
+      </li>
+      <li className="navbar__item active">
+        <Link className="navbar__link" to="/employees">
+          Kandy Employees
+        </Link>
+      </li>
+      <li className="navbar__item active">
+        <Link className="navbar__link" to="/customers">
+          Kandy Customers
         </Link>
       </li>
       <li className="navbar__item navbar__logout">

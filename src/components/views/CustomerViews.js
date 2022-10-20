@@ -1,5 +1,7 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 import { LocationList } from "../locations/Locations";
+import { FindKandy } from "../products/findKandy";
+import { KandyContainer } from "../products/kandyContainer";
 import { ProductsList } from "../products/products";
 
 export const CustomerViews = () => {
@@ -19,6 +21,7 @@ export const CustomerViews = () => {
         >
           <Route path="locations" element={<LocationList />} />
           <Route path="products" element={<ProductsList />} />
+          <Route path="find" element={<KandyContainer />} />
         </Route>
       </Routes>
     </>
